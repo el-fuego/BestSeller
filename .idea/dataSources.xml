@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" hash="868266321">
+    <data-source source="LOCAL" name="Rails BestSeller: development" uuid="2446deda-8c64-4112-ab8e-595bed72cc6d">
+      <driver-ref>postgresql</driver-ref>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql:bestseller</jdbc-url>
+      <user-name>bestseller</user-name>
+      <user-password>dfc8dfcfdfd9dfdedfd9dfcfdfc6dfc6dfcfdfd8</user-password>
+      <libraries />
+    </data-source>
+    <data-source source="LOCAL" name="Rails BestSeller: test" uuid="f120d9ce-0f4e-4683-95aa-785dee16b9ce">
+      <driver-ref>postgresql</driver-ref>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql:bestseller</jdbc-url>
+      <user-name>bestseller</user-name>
+      <user-password>dfc8dfcfdfd9dfdedfd9dfcfdfc6dfc6dfcfdfd8</user-password>
+      <libraries />
+    </data-source>
+    <data-source source="LOCAL" name="Rails BestSeller: production" uuid="1a22da4a-ec5e-4318-9434-55709389830e">
+      <driver-ref>postgresql</driver-ref>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://127.0.0.1/bestseller</jdbc-url>
+      <user-name>jitbay</user-name>
+      <user-password>dfcedfc8dfc0dfc8dfc3dfc0dfc8dfc7dfc4dfc6dfc9df9cdfcbdf92</user-password>
+      <libraries />
+    </data-source>
+  </component>
+</project>
+
