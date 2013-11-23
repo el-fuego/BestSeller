@@ -2,6 +2,7 @@
 require 'open-uri'
 # подключаем Nokogiri
 require 'nokogiri'
+require 'get_model.rb'
 
 
 namespace :aru do

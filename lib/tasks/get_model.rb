@@ -1,21 +1,6 @@
 # encoding: utf-8
 require 'rubygems'
 
-task :parse_site do
-  puts "tro-lo-lo."
-
-
-
-end
-
-# TODO Remove after tests
-task :get_model, [:name] => :environment do |task, args|
-
-  model = get_model args.name
-
-  puts model.name if model
-end
-
 def get_model (good_name)
   manufacturers = Manufacturer.all
   models = ManufacturerModel.all
