@@ -1,0 +1,166 @@
+@import "./patterns.css.scss";
+
+form {
+  @include border-box;
+  @include autoresize;
+  width:       500px;
+  margin:      $greed auto 0 auto;
+  line-height: $greed;
+  color:       $black;
+  //padding:     $greed;
+  position:    relative;
+
+  >div {
+    padding-left:  40%;
+    position:      relative;
+    margin-bottom: $greed/2;
+    line-height:   $greed;
+    min-height:    $greed*1.5;
+
+    &.actions {
+      padding-top: $greed/2;
+
+      a {
+        margin-left: $greed*1.5;
+        line-height: $greed*2;
+
+        &+br+a {
+          display: block;
+          margin:  $greed 0 0 0;
+        }
+      }
+    }
+    &.hint {
+      padding: 0;
+      text-align: center;
+
+      &.error {
+        color: $red;
+      }
+    }
+
+    label {
+      @include border-box;
+      display:       block;
+      position:      absolute;
+      left:          0;
+      top:           0;
+      width:         40%;
+      color:         $black;
+      line-height:   $greed*1.5 - 2px;
+      padding-right: $greed;
+      text-align:    right;
+
+      &:after {
+        content: ':';
+      }
+    }
+    input[type="text"],
+    input[type="email"],
+    input[type="number"],
+    input[type="radio"],
+    input[type="checkbox"],
+    select,
+    textarea {
+      @include input;
+    }
+    textarea {
+      height: $greed*6;
+    }
+    a {
+      color:       $disabled;
+    }
+    a[data-name="submit"],
+    input[type="submit"] {
+      @include button;
+      float:  left;
+      margin: 0;
+    }
+    .hint {
+      clear:     left;
+      font-size: $small;
+      color:     $grey;
+    }
+    .field_with_errors {
+      display: inline;
+
+      &~.hint {
+        position: relative;
+        top:      -1*$greed;
+      }
+
+      input[type="text"],
+      input[type="email"],
+      input[type="number"],
+      input[type="radio"],
+      input[type="checkbox"],
+      select,
+      textarea {
+        @include input-with-error;
+        margin-bottom: $greed;
+      }
+      .hint {
+        color:    $red;
+        position: absolute;
+        bottom:   0;
+        left:     40%;
+      }
+    }
+  }
+}
+
+// Anndroid, Iphone
+@media screen and (max-device-width: 1280px) and (min-resolution: 100 dpi),
+screen and (max-device-width: 1280px) and (min-device-pixel-ratio: 1.5),
+screen and (max-width: 1000px) {
+  form {
+    width: 80%;
+
+    >div {
+      width:     auto;
+      padding:   0;
+      font-size: $large;
+
+      label {
+        width:      100%;
+        position:   static;
+        display:    block;
+        text-align: left;
+      }
+      input[type="text"],
+      input[type="email"],
+      input[type="number"],
+      input[type="radio"],
+      input[type="checkbox"],
+      select,
+      textarea {
+        font-size: $large;
+        padding:   $greed/4 $greed/2;
+        font-size: $large;
+      }
+      input[type="checkbox"],
+      input[type="radio"] {
+        margin-right: $greed/2;
+        padding:      0;
+        float:        left;
+
+        &+label:after {
+          display: none;
+        }
+      }
+      .field_with_errors .hint {
+        left: 0;
+      }
+      input[type="submit"],
+      [data-name="submit"] {
+        @include border-box;
+        line-height: $greed*2.5;
+        font-size:   $large;
+        float:       none;
+        margin:      0 auto;
+        display:     inline-block;
+        width:       100%;
+      }
+    }
+  }
+}

@@ -1,0 +1,69 @@
+@import "./patterns.css.scss";
+
+body {
+  a {
+    text-decoration: none;
+    color:           $blue;
+
+    &:hover {
+      text-decoration: underline;
+      //color: $purple;
+    }
+    &.back {
+      display:       block;
+      margin-bottom: $greed/2;
+    }
+  }
+
+  #notice {
+    @include hover-background;
+    color:         $blue;
+    font-size:     $large;
+    font-weight:   bold;
+    margin-bottom: $greed*2;
+    padding:       $greed;
+    border-top:    1px $light dashed;
+    border-bottom: 1px $light dashed;
+    text-align:    center;
+  }
+
+  h1, h2 {
+    @include autoresize;
+    @include text-shadow;
+    font-size:       $xxl;
+    font-weight:     normal;
+    line-height:     $greed*2;
+    margin:          0 0 $greed 0;
+    text-decoration: none;
+    text-align:      center;
+
+    a {
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+
+  .not-found {
+    clear: both;
+    font-size: $large;
+  }
+
+  .add-good {
+    @include button;
+  }
+}
+
+// Anndroid, Iphone
+@media screen and (max-device-width: 1280px) and (min-resolution: 100 dpi),
+screen and (max-device-width: 1280px) and (min-device-pixel-ratio: 1.5),
+screen and (max-width: 1000px) {
+  body {
+    h1, h2 {
+      margin-left:  $greed;
+      margin-right: $greed;
+    }
+  }
+}

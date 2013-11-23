@@ -1,0 +1,43 @@
+@import "./patterns.css.scss";
+
+.pagination {
+  text-align:    center;
+  font-size:     $normal;
+  margin-bottom: $greed;
+
+  span {
+    padding:     0 1px;
+    font-weight: bold;
+
+    &.current {
+      color:     $purple;
+      font-size: $xl;
+    }
+    &.next,
+    &.prev,
+    &.last,
+    &.first {
+      display: none;
+    }
+
+  }
+}
+
+.button.next-page {
+  @include centered-button;
+  width: 300px;
+  margin: $greed*2 auto;
+}
+
+// Anndroid, Iphone
+@media screen and (max-device-width: 1280px) and (min-resolution: 100 dpi),
+screen and (max-device-width: 1280px) and (min-device-pixel-ratio: 1.5),
+screen and (max-width: 1000px) {
+  .pagination {
+    display: none;
+  }
+  .button.next-page {
+    width:      80%;
+    margin-top: $greed;
+  }
+}

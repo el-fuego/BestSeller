@@ -1,0 +1,15 @@
+%h1
+  Car searching
+
+= form_tag "/", method: "get" do |f|
+  .field
+    = label_tag :Manufacturer
+    = select :advert, :manufacturer_id, @manufacturers_list || []
+  .field
+    = label_tag :Model
+    = select :advert, :model_id, @models_list || []
+  .field
+    = label_tag :manufacture_year
+    = select :advert, :manufacture_year, (1930..2013).to_a.reverse, {include_blank: t(:Any)}, {'data-subtype' => 'additional', :class => 'small'}
+  .actions
+    = submit_tag 'Find cars'

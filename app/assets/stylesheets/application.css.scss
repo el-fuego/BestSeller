@@ -1,0 +1,73 @@
+//= require_self
+//= require_tree
+
+@import "./patterns.css.scss";
+
+//html,
+//body {
+//  height: 100%;
+//}
+
+body {
+  background:  $light-grey url(/assets/bg.jpg);
+  color:       $black;
+  font-family: 'Open Sans', arial, helvetica, sans-serif;
+  font-size:   $normal;
+  line-height: $greed;
+  margin:      0;
+
+  &.locked-header {
+    >.content {
+      z-index:     1;
+    }
+  }
+
+  >.content {
+    @include autoresize;
+    @include border-box;
+    width:      920px;
+    min-height: 600px;
+    margin:     100px auto 0 auto;
+    padding:    $greed*4 0 $greed*2 0;
+
+    //min-height: 100%;
+    //margin-top: $greed*-9;
+    //margin-bottom: $greed*-6;
+    //padding: $greed*11 0 $greed*8 0;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+
+  body {
+    min-width: 980px;
+
+    .content {
+      width:     auto;
+      max-width: 920px;
+    }
+  }
+}
+
+/*
+@media screen and (max-width: 980px) {
+
+  body {
+    width: 980px;
+  }
+}*/
+
+// Anndroid, Iphone
+@media screen and (max-device-width: 1280px) and (min-resolution: 100 dpi),
+screen and (max-device-width: 1280px) and (min-device-pixel-ratio: 1.5),
+screen and (max-width: 1000px) {
+  body {
+    min-width: 0;
+
+    .content {
+      padding-top: $greed*3;
+      min-width:   0;
+      max-width:   99999px;
+    }
+  }
+}

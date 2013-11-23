@@ -1,0 +1,32 @@
+// Place all the styles related to the goods controller here.
+// They will automatically be included in application.css.scss.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+@import "./patterns.css.scss";
+
+.old-browsers-message {
+  padding:    $greed*3;
+  text-align: center;
+  font-size:  $large;
+  display:    none;
+  
+  .title {
+    @include autoresize;
+    @include text-shadow;
+    font-size:       $xxl;
+    font-weight:     normal;
+    line-height:     $greed*2;
+    margin:          0 0 $greed 0;
+    text-decoration: none;
+    text-align:      center;
+  }
+
+  .browser {
+    cursor:     pointer;
+    display:    block;
+    font-size:  $xl;
+    margin:     $greed/2 auto;
+    padding:    $greed/2;
+    text-align: center;
+    width:      200px;
+  }
+}
