@@ -1,3 +1,6 @@
+# encoding: utf-8
+require 'rubygems'
+
 task :parse_site do
   puts "tro-lo-lo."
 

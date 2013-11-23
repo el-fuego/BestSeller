@@ -1,0 +1,6 @@
+%select{name: :model_id}
+  %option{value: 0}
+    = t(:Any)
+  - items.each do |i|
+    %option{value: i.id, manufacturer_id: i.manufacturer_id}
+      = i.name

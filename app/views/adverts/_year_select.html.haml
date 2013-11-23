@@ -1,0 +1,10 @@
+%select{name: :year, class: :middle}
+  %option{value: 0}
+    = t(:Any)
+
+  - items.each do |i|
+    %option{value: i}
+      = "&nbsp;&nbsp;#{i}".html_safe
+    - if i % 10 == 0 && i != items.last
+      %option{disabled: :disabled}
+        = "#{i-10 >= 2000 ? i-10 : (i-10).to_s[-2..-1]}#{t :th}:"
