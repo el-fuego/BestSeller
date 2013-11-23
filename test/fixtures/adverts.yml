@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  manufacturer_id: 1
+  model_id: 1
+  manufacture_year: 1
+  advert_created_at: 2013-11-23 15:38:22
+  url: MyText
+  image_url: MyText
+  thumbnail_url: MyText
+  is_cleared: false
+  is_demaged: false
+
+two:
+  manufacturer_id: 1
+  model_id: 1
+  manufacture_year: 1
+  advert_created_at: 2013-11-23 15:38:22
+  url: MyText
+  image_url: MyText
+  thumbnail_url: MyText
+  is_cleared: false
+  is_demaged: false
