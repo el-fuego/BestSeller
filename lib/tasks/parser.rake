@@ -10,7 +10,10 @@ end
 
 # TODO Remove after tests
 task :get_model, [:name] => :environment do |task, args|
-  puts get_model args.name
+
+  model = get_model args.name
+
+  puts model.name if model
 end
 
 def get_model (good_name)
