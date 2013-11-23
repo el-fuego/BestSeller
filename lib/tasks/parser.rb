@@ -1,4 +1,4 @@
-task :parse_site
+task :parse_site do
   puts "tro-lo-lo."
 
 
