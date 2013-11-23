@@ -1,0 +1,96 @@
+@import "./patterns.css.scss";
+
+@mixin menu-separator() {
+  content:    '';
+  display:    block;
+  position:   absolute;
+  top:        0;
+  width:      2px;
+  height:     30px;
+  background: url(/assets/menu.gif) -3px 100% repeat-x;
+}
+
+body {
+  &.locked-header {
+    .header {
+      .menu {
+        //padding-left: $greed*8;
+        width:        100%;
+        position:     fixed;
+        left:         0;
+        top:          0;
+        z-index:      3;
+      }
+    }
+  }
+  .header {
+    .menu {
+      @include border-box;
+      width:      100%;
+      height:     $greed*2;
+      background: #676E72;
+      overflow:   hidden;
+
+        a {
+          display:         block;
+          float:           left;
+          margin-left:     $greed;
+          line-height:     $greed*2;
+          height:          $greed*2;
+          color:           $light-grey;
+          font-size:       $small;
+          text-transform:  uppercase;
+          font-weight:     bold;
+          position:        relative;
+          text-decoration: none;
+
+          &:hover {
+            color:            $white;
+            text-decoration:  underline;
+          }
+        &.account {
+          text-transform: none;
+          font-size:      13px;
+          font-weight:    normal;
+        }
+          }
+      .login {
+        float:        right;
+        margin-right: $greed;
+
+        a {
+          float: right;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+
+  body {
+    .header {
+      .menu {
+        width: auto;
+      }
+    }
+  }
+}
+
+// Anndroid, Iphone
+@media screen and (max-device-width: 1280px) and (min-resolution: 100 dpi),
+screen and (max-device-width: 1280px) and (min-device-pixel-ratio: 1.5),
+screen and (max-width: 1000px) {
+  body {
+    .header {
+      .menu {
+        padding: 0;
+        
+        .all-goods,
+        .statistics {
+          display: none;
+        }
+      }
+    }
+  }
+}

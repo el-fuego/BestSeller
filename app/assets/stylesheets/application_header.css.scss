@@ -1,0 +1,90 @@
+@import "./patterns.css.scss";
+
+body {
+  &.locked-header {
+    .header {
+      padding-top: $greed*2;
+
+      .content {
+
+        .logo-small {
+          //display:    block;
+        }
+      }
+    }
+  }
+  .header {
+    position:   relative;
+
+    .content {
+      @include border-box;
+      @include radial-gradient;
+      position: relative;
+      padding:  $greed*2 0 0 0;
+      position: relative;
+      width:    auto;
+      margin:   0 auto;
+
+      .logo-small {
+        display: none;
+        height:     $greed*2;
+        width:      $greed*8;
+        background: $light url(/assets/logo_small.png) center center no-repeat;
+        background: url(/assets/logo_small.png) center center no-repeat, url(/assets/bg.jpg);
+        position:   fixed;
+        left:       0;
+        top:        0;
+        z-index:    4;
+
+        &:hover {
+          text-decoration: none;
+        }
+
+        &.english {
+          background: $light url(/assets/logo_small_en.png) center center no-repeat;
+          background: url(/assets/logo_small_en.png) center center no-repeat, url(/assets/bg.jpg);
+        }
+      }
+      .logo {
+        display:    block;
+        margin:     0 auto;
+        width:      $greed*20;
+        height:     $greed*9 - 34px;
+        background: url(/assets/logo.png) center center no-repeat;
+
+        &.english {
+          background: url(/assets/logo_en.png) center center no-repeat;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+
+  body {
+    .header {
+      .content {
+        width:     auto;
+        max-width: 920px;
+      }
+    }
+  }
+}
+
+/*
+@media screen and (max-width: 980px) {
+
+  body {
+    .header {
+      width: 920px;
+    }
+  }
+}*/
+
+// Anndroid, Iphone
+@media screen and (max-device-width: 1280px) and (min-resolution: 100 dpi),
+screen and (max-device-width: 1280px) and (min-device-pixel-ratio: 1.5),
+screen and (max-width: 1000px) {
+
+}

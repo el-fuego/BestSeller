@@ -1,0 +1,36 @@
+@import "./patterns.css.scss";
+
+body {
+  .footer {
+    @include text-shadow(0 1px 0 $black);
+    background:  $blue url(/assets/footer.gif) center top repeat-x;
+    padding:     $greed*3 $greed*3 $greed*2 $greed*3;
+    text-align:  right;
+    line-height: $greed;
+    color:       $light-grey;
+
+    a {
+      float:        left;
+      display:      block;
+      margin-right: $greed*2;
+      color:        $light-grey;
+      font-size:    $normal;
+
+      &:hover {
+        text-decoration: underline;
+        color:           $white;
+      }
+    }
+  }
+}
+
+// Anndroid, Iphone
+@media screen and (max-device-width: 1280px) and (min-resolution: 100 dpi),
+screen and (max-device-width: 1280px) and (min-device-pixel-ratio: 1.5),
+screen and (max-width: 1000px) {
+  body {
+    .footer {
+      text-align: center;
+    }
+  }
+}
