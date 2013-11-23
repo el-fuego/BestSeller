@@ -22,6 +22,7 @@ end
 
 gem 'haml-rails'
 gem 'devise'
+gem 'nokogiri'
 gem "squeel"
 
 gem 'russian', '~> 0.6.0'
