@@ -13,3 +13,7 @@ $ ->
       selected.removeAttr 'selected'
       options.filter('[value=0]').attr 'selected', 'selected'
   .change()
+
+  setInterval( ->
+    Wix.reportHeightChange $(document).height()
+  , 300)

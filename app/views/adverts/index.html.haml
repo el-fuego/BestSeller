@@ -1,2 +1,10 @@
 = render 'search_form'
-= render 'list', items: @adverts
+
+.results
+  %h2
+    = t 'Best of'
+    = @all_adverts_count
+    = t 'adverts for query:'
+
+  = render 'list', items: @adverts
+

@@ -1,10 +1,8 @@
 class AdvertsController < ApplicationController
   def index
-    response.headers["X-Frame-Options"] = "Allow-From http://www.website.com"
     @adverts = []
-    
 
-    @adverts = Advert.joins :best_offer
+    @adverts = Advert
     if params['model_id'] && params['model_id'].to_i != 0
       @adverts = @adverts.from_model params['model_id']
     else
@@ -12,10 +10,11 @@ class AdvertsController < ApplicationController
     end
     @adverts = @adverts.year params['year']  if params['year'] && params['year'].to_i != 0
 
-    @adverts = @adverts.where{best_offer.id != nil}.limit(100)
+    @all_adverts_count = (@adverts == Advert ? @adverts.all : @adverts).length
+
+    @adverts = @adverts.joins(:best_offer).where{best_offer.id != nil}.order('advert_created_at DESC').limit(100)
   end
 
   def settings
-    response.headers["X-Frame-Options"] = "Allow-From http://www.website.com"
   end
 end

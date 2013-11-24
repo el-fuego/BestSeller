@@ -51,8 +51,8 @@ body {
     font-size: $large;
   }
 
-  .add-good {
-    @include button;
+  .results {
+    margin-top: $greed*3;
   }
 }
 
