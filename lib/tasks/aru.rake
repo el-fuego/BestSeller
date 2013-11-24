@@ -71,6 +71,7 @@ namespace :aru do
     
     year_of_create = page.css('h3.head-car').first.text.strip.split.last[-4..-1]
     #year_of_create = 2013
+    city = page.css('span.city').css('a').first.text.strip
     
     tiket_photo = page.xpath('//div/a/img/@src').first.value.strip!
     phone = ''
@@ -79,6 +80,11 @@ namespace :aru do
     rescue Exception
       return 0
     end  
+    
+    description = page.css('ul.characteristic').first.to_s
+    # p "description"
+    # p description
+    
     
     #adv_url = 'http://auto.ria.ua' + page.css('h3.head-car').css('a')[0]['href']
     #adv_url = 'http://auto.ria.ua/auto_car_' + id + '.html'
@@ -108,7 +114,6 @@ namespace :aru do
     # p "phone: " + phone
     # p "created_at " + created_at.to_s
     year_of_create = Integer(year_of_create)
-    p year_of_create
     
     # t.integer  "manufacturer_model_id"
       # t.integer  "manufacture_year"
@@ -122,14 +127,14 @@ namespace :aru do
       # t.datetime "updated_at"
       # t.integer  "price"
     p "trying to save " + id
-    p created_at2
-    p created_at
     
     adv = Advert.new({:image_url => tiket_photo, :thumbnail_url => tiket_photo, 
     :url => adv_url, :advert_created_at => created_at2,
     :price => usd_price,
     :manufacture_year => year_of_create,  
-    :manufacturer_model_id => model_id})
+    :manufacturer_model_id => model_id,
+    :city => city,
+    :description => description})
       
     adv.save()
     p "saved " + id
