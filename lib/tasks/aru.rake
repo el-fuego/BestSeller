@@ -33,6 +33,12 @@ namespace :aru do
 
   def getAdvHtmlBlock(id)
     p "processing " + id
+    search_adv_url = 'http://auto.ria.ua/auto_car_' + id + '.html'
+    obj = Advert.where(:url => search_adv_url).first
+    if obj != nil
+      #print "already exists"
+      return 0
+    end
     
     url = 'http://auto.ria.ua/blocks_search/view/auto/{adv_id}/?lang_id=2&view_type_id=0&strategy=default&domain_zone=ua&user_id=2305539'
     url = url.sub! "{adv_id}", id
@@ -67,20 +73,25 @@ namespace :aru do
     #year_of_create = 2013
     
     tiket_photo = page.xpath('//div/a/img/@src').first.value.strip!
-    phone = page.css('span.phone').first.text
-    adv_url = 'http://auto.ria.ua' + page.css('h3.head-car').css('a')[0]['href']
-    #created_at = page.css('span.date-add')[0]['pvalue']
-    created_at = page.css('span.date-add').css('span').first.text.strip!
+    phone = ''
+    begin
+      phone = page.css('span.phone').first.text
+    rescue Exception
+      return 0
+    end  
     
+    #adv_url = 'http://auto.ria.ua' + page.css('h3.head-car').css('a')[0]['href']
+    #adv_url = 'http://auto.ria.ua/auto_car_' + id + '.html'
+    adv_url = search_adv_url
+    created_at = page.css('span.date-add')[0]['pvalue']
+    #created_at = page.css('span.date-add').css('span').first.text.strip! 
     # 12:00:26 15.11.2013
-    created_at = DateTime.parse(created_at, "%d.%m.%Y")
+    created_at2 = DateTime.parse(created_at)
     
     #p Date.strptime("{ 2009, 4, 15 }", "{ %Y, %m, %d }")
     #created_at = Date.strptime(created_at, "%H:%i:%s %d.%m.%Y")
 
     # get model_id from name
-    p "full_name"
-    p full_name
     manufacturer_model = get_model(full_name)
     model_id = 0
     if manufacturer_model != nil
@@ -89,10 +100,11 @@ namespace :aru do
       p "cannot define model for " + id  
     end
     
-    # p "url: " + adv_url
-    # p "photo" + tiket_photo
-    # p "name: " + full_name
-    p "price: " + usd_price
+    # p "created_at " + created_at2.to_s
+    # # p "url: " + adv_url
+    # # p "photo" + tiket_photo
+    # # p "name: " + full_name
+    # p "price: " + usd_price
     # p "phone: " + phone
     # p "created_at " + created_at.to_s
     year_of_create = Integer(year_of_create)
@@ -110,15 +122,18 @@ namespace :aru do
       # t.datetime "updated_at"
       # t.integer  "price"
     p "trying to save " + id
+    p created_at2
+    p created_at
     
     adv = Advert.new({:image_url => tiket_photo, :thumbnail_url => tiket_photo, 
-    :url => adv_url, :advert_created_at => created_at,
-    :advert_created_at => year_of_create, :price => usd_price, 
+    :url => adv_url, :advert_created_at => created_at2,
+    :advert_created_at => year_of_create, :price => usd_price,
+    :manufacture_year => year_of_create,  
     :manufacturer_model_id => model_id})
       
     adv.save()
     p "saved " + id
-    return page
+    return id
   end
    
 end
