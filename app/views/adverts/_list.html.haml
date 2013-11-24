@@ -3,9 +3,9 @@
     .item
       .features
         .price{title: t(:price)}
-          = item.price
+          = "$#{item.price}"
         .profit{title: t(:price)}
-          = item.best_offer.price_difference
+          = "$#{item.best_offer.price_difference}"
           %span
             = t :saved
 
