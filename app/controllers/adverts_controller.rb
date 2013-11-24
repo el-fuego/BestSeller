@@ -12,4 +12,8 @@ class AdvertsController < ApplicationController
 
     @adverts = @adverts.where{best_offer.id != nil}.limit(100)
   end
+
+  def settings
+
+  end
 end
