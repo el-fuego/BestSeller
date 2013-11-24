@@ -18,7 +18,7 @@ def get_model (good_name)
 end
 
 def _find_models_by_pattern(good_name, models)
-  models_patterns = models.map{|m|{model:m, pattern: Regexp.new(m.name, true)}}
+  models_patterns = models.map{|m|{model:m, pattern: Regexp.new("(^|[\\s\\.,])#{m.name}($|[\\s\\.,])", true)}}
   found_models = []
 
   # try to find all models

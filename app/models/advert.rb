@@ -4,6 +4,7 @@ class Advert < ActiveRecord::Base
   has_one :best_offer
   belongs_to :manufacturer
 
+  default_scope order('advert_created_at DESC')
 
   scope :from_model, lambda{ |id|
     where(manufacturer_model_id: id) if id

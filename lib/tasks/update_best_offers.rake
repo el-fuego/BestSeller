@@ -4,7 +4,6 @@ require 'rubygems'
 
 namespace :best_offers do
 
-
   task :clear => :environment do
     BestOffer.delete_all
   end
@@ -26,7 +25,7 @@ namespace :best_offers do
             # add to BestOffer adverts with lower price
             group.select{|a| a.price < price}.each do |a|
               #puts "#{a.manufacturer.name} #{a.manufacturer_model.name} #{a.manufacture_year}"
-              puts "#{a.manufacturer_model.name} #{a.manufacture_year}"
+              puts "#{a.manufacturer_model.manufacturer.name} #{a.manufacturer_model.name} #{a.manufacture_year}"
               BestOffer.new({advert_id: a.id, price_difference: price - a.price}).save!
             end
           end

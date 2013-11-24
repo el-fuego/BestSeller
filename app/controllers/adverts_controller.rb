@@ -2,6 +2,7 @@ class AdvertsController < ApplicationController
   def index
     @adverts = []
 
+    # search by parameters
     @adverts = Advert
     if params['model_id'] && params['model_id'].to_i != 0
       @adverts = @adverts.from_model params['model_id']
@@ -10,9 +11,11 @@ class AdvertsController < ApplicationController
     end
     @adverts = @adverts.year params['year']  if params['year'] && params['year'].to_i != 0
 
+    # all count
     @all_adverts_count = (@adverts == Advert ? @adverts.all : @adverts).length
 
-    @adverts = @adverts.joins(:best_offer).where{best_offer.id != nil}.order('advert_created_at DESC').limit(100)
+    # best_offers
+    @adverts = @adverts.joins(:best_offer).where{best_offer.id != nil}.limit(100)
   end
 
   def settings
