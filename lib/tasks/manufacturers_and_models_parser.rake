@@ -12,6 +12,11 @@ namespace :manufacturers_and_models do
     ManufacturerModel.delete_all
   end
 
+  task :loadmy => :environment do
+    jsonData = open("http://auto.ria.ua/ajax.php?target=auto&event=load_subcategory&marka_id=199&lang_id=2&category_id=0&is_hot=0&under_credit=0&matched_country=-1&checked_auto_ria=0&with_exchange=1").read()
+    p "jsonData"
+    p jsonData.decode("UTF-8")
+  end
 
   task :load => :environment do
     manufacturers = JSON.parse  File.read("lib/tasks/auto_ria_manufacturers.json")

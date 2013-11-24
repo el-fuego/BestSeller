@@ -8,12 +8,19 @@ require 'tasks/get_model.rb'
 namespace :aru do
   desc "grab adv from auto.ria.ua"
   
-  task :grab => :environment do
+  task :grab, [:start_page, :page_count] => [:environment] do |t, args|
+    args.with_defaults(:start_page => 0, :page_count => 20)
     # i dont know what "=> :environment" mean
     p "grabber is runned"
+    startPage = Integer(args.start_page)
+    endPage = startPage + Integer(args.page_count)
+    p startPage
+    p endPage
+    
     #getAdvHtmlBlock('11175983')
-    (0..20).to_a.each do |page_id|
+    (startPage..endPage).to_a.each do |page_id|
       getTopIds(page_id).each do |advert_id|
+        p "page: " + page_id.to_s
         getAdvHtmlBlock(advert_id)        
       end   
       #sleep 6   
@@ -99,11 +106,12 @@ namespace :aru do
 
     # get model_id from name
     manufacturer_model = get_model(full_name)
-    model_id = 0
+    model_id = nil
     if manufacturer_model != nil
       model_id = manufacturer_model.id
     else
-      p "cannot define model for " + id  
+      p "cannot define model for " + id
+      return 0 
     end
     
     # p "created_at " + created_at2.to_s
@@ -128,7 +136,9 @@ namespace :aru do
       # t.integer  "price"
     p "trying to save " + id
     
-    adv = Advert.new({:image_url => tiket_photo, :thumbnail_url => tiket_photo, 
+    adv = Advert.new({
+      #:image_url => tiket_photo, 
+    :thumbnail_url => tiket_photo, 
     :url => adv_url, :advert_created_at => created_at2,
     :price => usd_price,
     :manufacture_year => year_of_create,  

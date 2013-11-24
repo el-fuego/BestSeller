@@ -5,7 +5,7 @@ class Advert < ActiveRecord::Base
   belongs_to :manufacturer
 
 
-  scope :model, lambda{ |id|
+  scope :from_model, lambda{ |id|
     where(manufacturer_model_id: id) if id
   }
 
