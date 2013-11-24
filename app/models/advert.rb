@@ -1,3 +1,4 @@
+# encoding: utf-8
 class Advert < ActiveRecord::Base
   belongs_to :manufacturer_model
   has_one :best_offer
