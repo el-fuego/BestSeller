@@ -127,7 +127,7 @@ namespace :aru do
     
     adv = Advert.new({:image_url => tiket_photo, :thumbnail_url => tiket_photo, 
     :url => adv_url, :advert_created_at => created_at2,
-    :advert_created_at => year_of_create, :price => usd_price,
+    :price => usd_price,
     :manufacture_year => year_of_create,  
     :manufacturer_model_id => model_id})
       
