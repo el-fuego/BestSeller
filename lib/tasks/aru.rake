@@ -2,7 +2,7 @@
 require 'open-uri'
 # подключаем Nokogiri
 require 'nokogiri'
-require 'get_model.rb'
+require 'tasks/get_model.rb'
 
 
 namespace :aru do
@@ -11,18 +11,17 @@ namespace :aru do
   task :grab => :environment do
     # i dont know what "=> :environment" mean
     p "grabber is runned"
-    #getAdvHtmlBlock('10122766')
-    
+    # getAdvHtmlBlock('10122766')
     for i in getTopIds()
       getAdvHtmlBlock(i)
-      ## p getAdvHtmlBlock(i)
     end
    
   end
   
-  def getTopIds()
+  def getTopIds(page_id=0)
     # return ['10122766', '11175983', '9628547', '9151332', '8531964'];
-    url = 'http://auto.ria.ua/blocks_search_ajax/search/?bodystyle=0&countpage=100&category_id=1&view_type_id=0&page=0&marka=0&model=0&s_yers=0&po_yers=0&state=0&city=0&price_ot=&price_do=&currency=1&gearbox=0&type=0&drive_type=0&door=0&color=0&metallic=0&engineVolumeFrom=&engineVolumeTo=&raceFrom=&raceTo=&powerFrom=&powerTo=&power_name=1&fuelRateFrom=&fuelRateTo=&fuelRatesType=city&custom=0&damage=0&saledParam=0&under_credit=0&confiscated_car=0&auto_repairs=0&with_exchange=0&with_real_exchange=0&exchangeTypeId=0&with_photo=0&with_video=0&is_hot=0&vip=0&checked_auto_ria=0&top=0&order_by=0&hide_black_list=0&auto_id=&auth=0&deletedAutoSearch=0&user_id=0&scroll_to_auto_id=0&expand_search=0&can_be_checked=0&last_auto_id=0&matched_country=-1&seatsFrom=&seatsTo=&wheelFormulaId=0&axleId=0&carryingTo=&carryingFrom=&search_near_states=0'
+    url = 'http://auto.ria.ua/blocks_search_ajax/search/?bodystyle=0&countpage=100&category_id=1&view_type_id=0&page={page_id}&marka=0&model=0&s_yers=0&po_yers=0&state=0&city=0&price_ot=&price_do=&currency=1&gearbox=0&type=0&drive_type=0&door=0&color=0&metallic=0&engineVolumeFrom=&engineVolumeTo=&raceFrom=&raceTo=&powerFrom=&powerTo=&power_name=1&fuelRateFrom=&fuelRateTo=&fuelRatesType=city&custom=0&damage=0&saledParam=0&under_credit=0&confiscated_car=0&auto_repairs=0&with_exchange=0&with_real_exchange=0&exchangeTypeId=0&with_photo=0&with_video=0&is_hot=0&vip=0&checked_auto_ria=0&top=0&order_by=0&hide_black_list=0&auto_id=&auth=0&deletedAutoSearch=0&user_id=0&scroll_to_auto_id=0&expand_search=0&can_be_checked=0&last_auto_id=0&matched_country=-1&seatsFrom=&seatsTo=&wheelFormulaId=0&axleId=0&carryingTo=&carryingFrom=&search_near_states=0'
+    url = url.sub! "{page_id}", page_id.to_s
     # получаем содержимое веб-страницы в объект
     jsonData = JSON.parse(open(url.to_s).read())
     return jsonData['result']['search_result']['ids']
@@ -53,6 +52,8 @@ namespace :aru do
     rescue Exception
       return
     end  
+    
+    usd_price = usd_price.split.join
         
     full_name = page.css('h3.head-car').css('a').first.text    
     year_of_create = page.css('h3.head-car').first.text.strip.split.last[-4..-1]
@@ -65,7 +66,7 @@ namespace :aru do
     created_at = page.css('span.date-add').css('span').first.text.strip!
     
     # 12:00:26 15.11.2013
-    created_at = DateTime.strptime(created_at, "%d.%m.%Y")
+    created_at = DateTime.parse(created_at, "%d.%m.%Y")
     
     #p Date.strptime("{ 2009, 4, 15 }", "{ %Y, %m, %d }")
     #created_at = Date.strptime(created_at, "%H:%i:%s %d.%m.%Y")
@@ -73,7 +74,7 @@ namespace :aru do
     # p "url: " + adv_url
     # p "photo" + tiket_photo
     # p "name: " + full_name
-    # p "price: " + usd_price
+    p "price: " + usd_price
     # p "phone: " + phone
     # p "created_at " + created_at.to_s
     year_of_create = Integer(year_of_create)
