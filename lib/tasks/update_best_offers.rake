@@ -13,8 +13,6 @@ namespace :best_offers do
 
     ManufacturerModel.all.each do |model|
 
-      # puts model.name
-
       adverts = model.adverts
 
       # goto next if adverts count < minimal
@@ -39,19 +37,19 @@ namespace :best_offers do
     prices.each do |p|
       group = get_price_group p, max_price, step_coefficient
       prices_groups[group] = [] if prices_groups[group] == nil
-      prices_groups[group] << price
+      prices_groups[group] << p
     end
 
     # get max price items group
-    max_length = prices_groups.max{|g| g.length}
+    max_length_group = prices_groups.max_by{|g| g.length}.last
 
     # all prices was grouped to single group
-    return if max_length == prices.length
+    return if max_length_group.length == prices.length
 
     # search with widest price group
-    return get_average_price prices, step_coefficient*2 if prices.length < max_length * items_with_same_price_coefficient
+    return get_average_price(prices, step_coefficient*2) if prices.length < (max_length_group.length * same_prices_count_coefficient)
 
-    prices_groups.find{|g| g == max_length}.reduce(:+)
+    max_length_group.reduce(:+)
   end
 
   def get_price_group(price, max_price, step_coefficient)
