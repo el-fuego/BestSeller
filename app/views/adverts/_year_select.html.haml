@@ -3,7 +3,7 @@
     = t(:Any)
 
   - items.each do |i|
-    %option{value: i}
+    %option{value: i, selected: selected_id == i ? 'selected' : nil}
       = "&nbsp;&nbsp;#{i}".html_safe
     - if i % 10 == 0 && i != items.last
       %option{disabled: :disabled}

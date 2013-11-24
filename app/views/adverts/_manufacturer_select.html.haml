@@ -3,5 +3,5 @@
     = t(:Any)
 
   - items.each do |i|
-    %option{value: i.id}
+    %option{value: i.id, selected: selected_id == i.id ? 'selected' : nil}
       = i.name

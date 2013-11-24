@@ -72,6 +72,12 @@
         //font-weight: bold;
         font-size:   $large;
       }
+      .profit {
+        @include text-shadow;
+        //font-weight: bold;
+        font-size:   $large;
+        color:       $red;
+      }
       .date {
         position:   absolute;
         left:       $greed*18;

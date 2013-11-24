@@ -4,12 +4,12 @@
 = form_tag "/", method: "get" do |f|
   .field
     = label_tag :Manufacturer
-    = render 'manufacturer_select', items: Manufacturer.all
+    = render 'manufacturer_select', items: Manufacturer.all, selected_id: params['manufacturer_id'].to_i
   .field
     = label_tag :Model
-    = render 'manufacturer_model_select', items: ManufacturerModel.all
+    = render 'manufacturer_model_select', items: ManufacturerModel.all, selected_id: params['model_id'].to_i
   .field
     = label_tag :manufacture_year
-    = render 'year_select', items: (1930..Date.today.year).to_a.reverse
+    = render 'year_select', items: (1930..Date.today.year).to_a.reverse, selected_id: params['year'].to_i
   .actions
     = submit_tag t(:find_cars)

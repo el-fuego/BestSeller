@@ -6,3 +6,4 @@ $ ->
     options.hide()
     .filter("[manufacturer_id=#{$(e.target).val()}],[value=0]")
     .show()
+  .change()
