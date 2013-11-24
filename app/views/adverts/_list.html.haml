@@ -7,6 +7,9 @@
 
         .manufacturer_year
           = item.manufacture_year
+
+        .region
+          = item.city
           
         - if item.advert_created_at
           .date{title: "#{t :posted_at} #{item.advert_created_at.strftime '%d.%m.%Y %H:%M'}"}
@@ -16,5 +19,8 @@
       %h2{class: 'name'}
         -# = link_to "#{item.manufacturer.name} #{item.manufacturer_model.name}", item.url
         = link_to "#{item.manufacturer_model.name}", item.url
+
+      = item.description
+
 
       = link_to image_tag(item.thumbnail_url, {alt: ''}), item.url
