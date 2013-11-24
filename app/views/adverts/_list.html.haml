@@ -21,8 +21,7 @@
             = item.advert_created_at.strftime '%d.%m.%Y %H:%M'
 
       %h2{class: 'name'}
-        -# = link_to "#{item.manufacturer.name} #{item.manufacturer_model.name}", item.url
-        = link_to "#{item.manufacturer_model.name}", item.url
+        = link_to "#{item.manufacturer_model.manufacturer.name} #{item.manufacturer_model.name}", item.url
 
       = item.description.html_safe
 
