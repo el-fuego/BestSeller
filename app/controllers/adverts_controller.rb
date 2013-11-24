@@ -1,6 +1,8 @@
 class AdvertsController < ApplicationController
   def index
+    response.headers["X-Frame-Options"] = "Allow-From http://www.website.com"
     @adverts = []
+    
 
     @adverts = Advert.joins :best_offer
     if params['model_id'] && params['model_id'].to_i != 0
