@@ -1,5 +1,6 @@
 class AdvertsController < ApplicationController
   def index
+    response.headers["X-Frame-Options"] = "Allow-From http://www.website.com"
     @adverts = []
 
     @adverts = Advert.joins :best_offer
@@ -14,6 +15,6 @@ class AdvertsController < ApplicationController
   end
 
   def settings
-
+    response.headers["X-Frame-Options"] = "Allow-From http://www.website.com"
   end
 end
