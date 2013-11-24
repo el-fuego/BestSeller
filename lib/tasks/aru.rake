@@ -11,10 +11,10 @@ namespace :aru do
   task :grab => :environment do
     # i dont know what "=> :environment" mean
     p "grabber is runned"
-    # getAdvHtmlBlock('10122766')
-    for i in getTopIds()
-      getAdvHtmlBlock(i)
-    end
+    getAdvHtmlBlock('10122766')
+    # for i in getTopIds()
+      # getAdvHtmlBlock(i)
+    # end
    
   end
   
@@ -53,9 +53,12 @@ namespace :aru do
       return
     end  
     
+    
+    
     usd_price = usd_price.split.join
         
     full_name = page.css('h3.head-car').css('a').first.text    
+    
     year_of_create = page.css('h3.head-car').first.text.strip.split.last[-4..-1]
     #year_of_create = 2013
     
@@ -70,6 +73,17 @@ namespace :aru do
     
     #p Date.strptime("{ 2009, 4, 15 }", "{ %Y, %m, %d }")
     #created_at = Date.strptime(created_at, "%H:%i:%s %d.%m.%Y")
+
+    # get model_id from name
+    p "full_name"
+    p full_name
+    manufacturer_model = get_model(full_name)
+    model_id = 0
+    if manufacturer_model != nil
+      manufacturer_model_id = manufacturer_model.id
+    else
+      p "cannot define model for " + id  
+    end
     
     # p "url: " + adv_url
     # p "photo" + tiket_photo
@@ -90,12 +104,13 @@ namespace :aru do
     # t.boolean  "is_demaged"
       # t.datetime "created_at"
       # t.datetime "updated_at"
-    # t.integer  "price"
+      # t.integer  "price"
     p "trying to save " + id
     
     adv = Advert.new({:image_url => tiket_photo, :thumbnail_url => tiket_photo, 
     :url => adv_url, :advert_created_at => created_at,
-    :advert_created_at => year_of_create, :price => usd_price})
+    :advert_created_at => year_of_create, :price => usd_price, 
+    :manufacturer_model_id => model_id})
       
     adv.save()
     p "saved " + id
