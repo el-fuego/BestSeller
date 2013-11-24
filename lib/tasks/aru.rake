@@ -11,10 +11,14 @@ namespace :aru do
   task :grab => :environment do
     # i dont know what "=> :environment" mean
     p "grabber is runned"
-    getAdvHtmlBlock('10122766')
-    # for i in getTopIds()
-      # getAdvHtmlBlock(i)
-    # end
+    #getAdvHtmlBlock('11175983')
+    (0..20).to_a.each do |page_id|
+      getTopIds(page_id).each do |advert_id|
+        getAdvHtmlBlock(advert_id)        
+      end   
+      #sleep 6   
+    end
+
    
   end
   
@@ -80,7 +84,7 @@ namespace :aru do
     manufacturer_model = get_model(full_name)
     model_id = 0
     if manufacturer_model != nil
-      manufacturer_model_id = manufacturer_model.id
+      model_id = manufacturer_model.id
     else
       p "cannot define model for " + id  
     end

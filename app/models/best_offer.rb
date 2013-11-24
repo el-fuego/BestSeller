@@ -1,3 +1,3 @@
 class BestOffer < ActiveRecord::Base
-  has_one :advert
+  belongs_to :advert
 end

@@ -21,7 +21,8 @@ namespace :best_offers do
 
         # add to BestOffer adverts with lower price
         adverts.select{|a| a.price < price}.each do |a|
-          puts "#{a.manufacturer.name} #{a.manufacturer_model.name} #{a.manufacture_year}"
+          #puts "#{a.manufacturer.name} #{a.manufacturer_model.name} #{a.manufacture_year}"
+          puts "#{a.manufacturer_model.name} #{a.manufacture_year}"
           BestOffer.new({advert_id: a.id, price_difference: price - a.price}).save!
         end
       end
