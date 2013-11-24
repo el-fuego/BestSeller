@@ -7,4 +7,8 @@ class Manufacturer < ActiveRecord::Base
   def remove_symbols
     self.name.gsub! /[^\sa-zA-Z0-9\-_а-яА-Я’єЄїЇіІґҐ()]+/, ''
   end
+
+  validates :name,
+            :uniqueness => true,
+            :presence => true
 end
