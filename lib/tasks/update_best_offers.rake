@@ -50,7 +50,7 @@ namespace :best_offers do
     # search with widest price group
     return get_average_price(prices, step_coefficient*2) if prices.length < (max_length_group.length * same_prices_count_coefficient)
 
-    max_length_group.reduce(:+)
+    (max_length_group.reduce(:+) / max_length_group.length).to_i
   end
 
   def get_price_group(price, max_price, step_coefficient)
