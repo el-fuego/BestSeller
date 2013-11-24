@@ -1,0 +1,9 @@
+%h1
+  Settings
+
+= form_tag "/", method: "get" do |f|
+  .field
+    = label_tag 'Adverts type'
+    = select :adverts_type, :adverts_type, ['cars', 'comming soon'], {}, {class: 'middle'}
+  .actions
+    = submit_tag t(:Save)
