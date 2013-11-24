@@ -15,15 +15,17 @@ namespace :best_offers do
 
       adverts = model.adverts
 
-      # goto next if adverts count < minimal
-      if adverts.length > 2 then
-        price = get_average_price adverts.map{|a|a.price}
+      adverts.group_by{|a| a.manufacture_year }.each do |group|
+        # goto next if adverts count < minimal
+        if adverts.length > 2 then
+          price = get_average_price group.map{|a|a.price}
 
-        # add to BestOffer adverts with lower price
-        adverts.select{|a| a.price < price}.each do |a|
-          #puts "#{a.manufacturer.name} #{a.manufacturer_model.name} #{a.manufacture_year}"
-          puts "#{a.manufacturer_model.name} #{a.manufacture_year}"
-          BestOffer.new({advert_id: a.id, price_difference: price - a.price}).save!
+          # add to BestOffer adverts with lower price
+          group.select{|a| a.price < price}.each do |a|
+            #puts "#{a.manufacturer.name} #{a.manufacturer_model.name} #{a.manufacture_year}"
+            puts "#{a.manufacturer_model.name} #{a.manufacture_year}"
+            BestOffer.new({advert_id: a.id, price_difference: price - a.price}).save!
+          end
         end
       end
     end
