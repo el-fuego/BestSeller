@@ -1,10 +1,14 @@
 = render 'search_form'
 
 .results
+
   %h2
-    = t 'Best of'
-    = @all_adverts_count
-    = t 'adverts for query:'
+    -if @adverts.empty?
+      = t :not_found
+    -else
+      = t 'Best of'
+      = @all_adverts_count
+      = t 'adverts for query:'
 
   = render 'list', items: @adverts
 

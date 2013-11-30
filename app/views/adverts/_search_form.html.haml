@@ -11,5 +11,11 @@
   .field
     = label_tag :manufacture_year
     = render 'year_select', items: (1930..Date.today.year).to_a.reverse, selected_id: params['year'].to_i
+  .field
+    = label_tag :max_price
+    = number_field_tag :max_price, params['max_price'], class: 'middle'
+  .field
+    = label_tag :cleared_only
+    = check_box_tag :cleared_only, nil, params['cleared_only'] == 'on'
   .actions
     = submit_tag t(:find_cars)

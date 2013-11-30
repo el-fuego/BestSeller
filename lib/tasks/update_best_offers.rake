@@ -3,6 +3,7 @@ require 'rubygems'
 
 
 namespace :best_offers do
+  desc "search for best price adverts"
 
   task :clear => :environment do
     BestOffer.delete_all
