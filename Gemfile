@@ -33,6 +33,12 @@ gem 'paranoia'
 
 gem 'seed_dump'
 
+# colored console output
+gem 'colorize'
+
+# parallel each, map..
+gem 'parallel'
+
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
